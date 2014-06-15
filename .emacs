@@ -71,11 +71,20 @@
 
 (visual-line-mode t)
 
+;; remove the scroll sound
+(setq ring-bell-function #'ignore)
+
 ;; save used commands, paths, etc.
 (desktop-save-mode 1)
 
 ;; don't show the toolbar
 (tool-bar-mode 0)
+
+;; scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
 
 ;;----------------- fonts -----------------------;; 
 ;; small
@@ -89,5 +98,4 @@
 ;; c-mode defaults
 (setq c-default-style "linux"
       c-basic-offset 4)
-
 ;; EOF
