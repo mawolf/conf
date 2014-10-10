@@ -1,20 +1,10 @@
-;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp")
-;;(add-to-list 'load-path "/usr/local/share/emacs/24.3.50/site-lisp")
-;;(require 'tex-site)
-
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 
-;;(require 'fuzzy-format)
-(require 'elisp-format)
 (require 'package)
-(add-to-list 'package-archives 
-	     '("marmalade" .
-	       "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
-(package-initialize)
-
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ;;----------------- theme selection ------------;;
 ;;(require 'birds-of-paradise-plus-theme)
@@ -30,16 +20,25 @@
 ;;---------------- tex options --------------------;;
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+
+;; no master document
 (setq-default TeX-master nil)
 
-(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+;; spell checking
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+
+;; make it possible to show math equations
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+;; enable reftex features
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+
+;; make linespacing bigger, make it easier to read
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (setq line-spacing 0.5)(TeX-PDF-mode)
 			     ))
 
+;; enable rextex plugin in auctex
 (setq reftex-plug-into-AUCTeX t)
 
 ;; need to specify a path if running on mac
@@ -51,7 +50,6 @@
 
 ;; spell checking enabled
 (flyspell-mode t)
-
 
 ;;--------------- appearance ------------------;;
 (column-number-mode t)
@@ -86,6 +84,10 @@
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
+;;----------------- backup ----------------------;;
+;; don't create backup files(never had to actually use one of these)
+(setq make-backup-files nil)
+
 ;;----------------- fonts -----------------------;; 
 ;; small
 ;;(set-face-attribute 'default nil :family "Monaco" :height 110)
@@ -98,4 +100,5 @@
 ;; c-mode defaults
 (setq c-default-style "linux"
       c-basic-offset 4)
+
 ;; EOF
