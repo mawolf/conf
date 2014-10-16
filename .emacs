@@ -78,6 +78,9 @@
 ;; don't show the toolbar
 (tool-bar-mode 0)
 
+;; default of 8 is too much
+(setq default-tab-width 4)
+
 ;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
